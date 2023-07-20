@@ -40,7 +40,7 @@ const Timer = () => {
         styles={buildStyles({
           strokeLinecap: "round",
           textSize: "16px",
-          pathTransitionDuration: 1, // Animation duration in seconds
+          pathTransitionDuration: 1,
           textColor: "#20bf55",
           pathColor: "#011936",
           backgroundColor: "#011936",
