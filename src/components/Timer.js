@@ -41,9 +41,8 @@ const Timer = () => {
           strokeLinecap: "round",
           textSize: "16px",
           pathTransitionDuration: 1, // Animation duration in seconds
-          pathColor: `rgba(1, 25, 54, ${1 - timer / 60})`,
           textColor: "#20bf55",
-          trailColor: "#d6d6d6",
+          pathColor: "#011936",
           backgroundColor: "#011936",
         })}
       />
