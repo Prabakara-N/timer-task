@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
 const Timer = () => {
-  let [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(60);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -16,11 +17,11 @@ const Timer = () => {
   };
 
   const handldeDecrese = () => {
-    setTimer((prevTimer) => Math.min(prevTimer - 5, 60));
+    setTimer((prevTimer) => Math.max(prevTimer - 5, 0));
   };
 
   const handleClear = () => {
-    setTimer(`00`);
+    setTimer(0);
   };
 
   const handleRestart = () => {
@@ -32,9 +33,21 @@ const Timer = () => {
       <h1 className="text-center text-3xl text-green-400 mb-8 mt-2">
         Routine Starting In...
       </h1>
-      <div className="w-[320px] h-[320px] rounded-full border-[12px] border-violet-700 flex items-center justify-center">
-        <p className="text-6xl text-green-400">00 : {timer}</p>
-      </div>
+
+      <CircularProgressbar
+        value={(timer / 60) * 100} // Convert the timer to a percentage
+        text={`00 : ${timer < 10 ? `0${timer}` : timer}`}
+        styles={buildStyles({
+          strokeLinecap: "round",
+          textSize: "16px",
+          pathTransitionDuration: 1, // Animation duration in seconds
+          pathColor: `rgba(1, 25, 54, ${1 - timer / 60})`,
+          textColor: "#20bf55",
+          trailColor: "#d6d6d6",
+          backgroundColor: "#011936",
+        })}
+      />
+
       <div className="mt-6 flex flex-col justify-center">
         <div className="gap-4 grid grid-cols-2 grid-rows-2  items-center justify-center">
           <button onClick={handleIncrease}>Add (+10s)</button>
